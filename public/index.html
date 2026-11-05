@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="uz">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="theme-color" content="#111111">
+    <title>Quizly</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <header>
+            <div class="brand"><span class="logo">Q</span>
+                <div><b>QUIZLY</b><small>KNOWLEDGE ARENA</small></div>
+            </div><button class="icon-btn" id="themeBtn">☼</button>
+        </header>
+        <main>
+            <section id="home" class="page active">
+                <div class="welcome">
+                    <div><span class="eyebrow">YOUR LEARNING SPACE</span>
+                        <h1>Ready to<br><em>level up?</em></h1>
+                        <p>Bilimingni sinab ko'r. XP to'pla. Reytingda ko'taril.</p>
+                    </div>
+                    <div class="hero-mark">Q<span>+</span></div>
+                </div>
+                <div class="stats">
+                    <div class="stat"><small>YOUR XP</small><strong id="xp">0</strong></div>
+                    <div class="stat"><small>GLOBAL RANK</small><strong id="rank">#—</strong></div>
+                    <div class="stat"><small>LEVEL</small><strong id="level">1</strong></div>
+                </div>
+                <div class="section-head">
+                    <h2>Quick play</h2><span>01 / QUIZ</span>
+                </div>
+                <div class="play-card">
+                    <div><span class="pill">SOLO MODE</span>
+                        <h3>Daily challenge</h3>
+                        <p>8 ta savol · XP yutib ol</p>
+                    </div><button class="primary" data-go="quiz">Play now <b>↗</b></button>
+                </div>
+                <div class="play-card secondary-card">
+                    <div><span class="pill dark-pill">MULTIPLAYER</span>
+                        <h3>Play with friends</h3>
+                        <p>Xona yarat yoki kod bilan qo'shil</p>
+                    </div><button class="outline" data-go="rooms">Rooms ↗</button>
+                </div>
+                <div class="section-head">
+                    <h2>Your progress</h2><span>OVERVIEW</span>
+                </div>
+                <div class="progress-card">
+                    <div class="progress-line"><span>Correct answers</span><b id="accuracy">0%</b></div>
+                    <div class="track"><i id="accuracyBar"></i></div>
+                    <p id="played">Hozircha o'yin boshlanmagan.</p>
+                </div>
+            </section>
+            <section id="quiz" class="page">
+                <div class="section-head">
+                    <h2>Solo quiz</h2><span id="quizCount">READY</span>
+                </div>
+                <div id="quizArea" class="quiz-card"><span class="pill">DAILY CHALLENGE</span>
+                    <h3>Bilimingni sinashga tayyormisan?</h3>
+                    <p>Har bir to'g'ri javob uchun 10 XP olasan.</p><button class="primary full" id="startQuiz">Start
+                        quiz ↗</button>
+                </div>
+            </section>
+            <section id="rankPage" class="page">
+                <div class="section-head">
+                    <h2>Leaderboard</h2><span>GLOBAL</span>
+                </div>
+                <div class="rank-hero"><span>🏆</span>
+                    <div><small>YOUR POSITION</small><strong id="myRank">#—</strong></div>
+                </div>
+                <div id="leaderboard" class="leader-list"></div>
+            </section>
+            <section id="profile" class="page">
+                <div class="section-head">
+                    <h2>My profile</h2><span>PLAYER CARD</span>
+                </div>
+                <div class="profile-card">
+                    <div class="avatar" id="avatar">Q</div>
+                    <h2 id="playerName">Player</h2>
+                    <p id="playerHandle">@telegram</p>
+                    <div class="profile-numbers">
+                        <div><b id="pXp">0</b><small>XP</small></div>
+                        <div><b id="pLevel">1</b><small>LEVEL</small></div>
+                        <div><b id="pGames">0</b><small>GAMES</small></div>
+                    </div>
+                </div>
+                <div class="progress-card">
+                    <div class="progress-line"><span>To'g'ri javoblar</span><b id="pAccuracy">0%</b></div>
+                    <div class="track"><i id="pAccuracyBar"></i></div>
+                </div>
+            </section>
+            <section id="rooms" class="page">
+                <div class="section-head">
+                    <h2>Play together</h2><span>MULTIPLAYER</span>
+                </div>
+                <div class="quiz-card"><span class="pill">CREATE ROOM</span>
+                    <h3>Do'stlaringni chaqir</h3>
+                    <p>Yangi xona yarat va 6 xonali kodni ulash.</p><button class="primary full" id="createRoom">Create
+                        room +</button>
+                    <div id="createdRoom"></div>
+                </div>
+                <div class="quiz-card"><span class="pill dark-pill">JOIN ROOM</span>
+                    <h3>Room code</h3><input id="roomCode" maxlength="6" inputmode="numeric"
+                        placeholder="123456"><button class="outline full" id="joinRoom">Join room ↗</button>
+                    <div id="joinedRoom"></div>
+                </div>
+                <p class="muted note">Xona yaratish va qo'shilish ishlaydi. Real vaqtli multiplayer savol-javob rejimi
+                    keyingi bosqichda serverda kengaytiriladi.</p>
+            </section>
+            <section id="settings" class="page">
+                <div class="section-head">
+                    <h2>Settings</h2><span>PREFERENCES</span>
+                </div>
+                <div class="settings-card">
+                    <div><b>Appearance</b><small>Interfeys ko'rinishi</small></div><button class="outline"
+                        id="themeToggle">Dark / Light</button>
+                </div>
+                <div class="settings-card">
+                    <div><b>Telegram account</b><small>Telegram orqali avtomatik tasdiqlangan</small></div><span
+                        class="verified">CONNECTED ✓</span>
+                </div>
+                <div class="settings-card">
+                    <div><b>Phone number</b><small>Faqat o'zing ulashsang saqlanadi</small></div><button class="outline"
+                        id="sharePhone">Share contact</button>
+                </div>
+                <p class="muted note">Telefon raqami Telegram Web App ichida alohida rozilik va bot orqali kontakt
+                    yuborish talab qiladi.</p>
+            </section>
+        </main>
+        <nav><button class="nav active" data-page="home"><span>⌂</span>Home</button><button class="nav"
+                data-page="quiz"><span>◈</span>Quiz</button><button class="nav"
+                data-page="rankPage"><span>♛</span>Rank</button><button class="nav"
+                data-page="profile"><span>◎</span>Profile</button><button class="nav"
+                data-page="settings"><span>⚙</span>More</button></nav>
+    </div>
+    <div id="toast"></div>
+    <script src="/app.js"></script>
+</body>
+
+</html>

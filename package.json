@@ -1,0 +1,14 @@
+{
+  "name": "quizly-telegram",
+  "version": "1.0.0",
+  "description": "Quizly Telegram Bot and Mini App with JSON persistence",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "telegraf": "^4.16.3"
+  }
+}
